@@ -13,6 +13,6 @@ class User < ApplicationRecord
 			class_name: "FriendRequest", dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :friendships, dependent: :destroy
-  has_many :friend, through: :friendships
+  has_many :friends, through: :friendships
   
 end

@@ -6,6 +6,12 @@ class FriendRequest < ApplicationRecord
   validate :not_pending
   validate :not_self
 
+  def accept
+    sender.friends << receiver
+    receiver.friends << sender
+    destroy
+  end
+
   private
 
   def not_self
