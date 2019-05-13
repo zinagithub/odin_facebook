@@ -9,7 +9,7 @@ class FriendshipTest < ActiveSupport::TestCase
   	@self_friendship = friendships(:self_friendship)
   end	
   test 'Valid friendship' do
-	assert @friendship.valid?  
+	  assert @friendship.valid?  
   end
 
   test 'Invalid friendship' do

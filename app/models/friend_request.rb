@@ -5,6 +5,7 @@ class FriendRequest < ApplicationRecord
   # validate :not_friends
   validate :not_pending
   validate :not_self
+  validate :not_friends
 
   def accept
     sender.friends << receiver
@@ -22,8 +23,8 @@ class FriendRequest < ApplicationRecord
     errors.add(:receiver, 'already requested friendship') if receiver.friend_requests_received.include?(sender)
   end
 
-  # def not_friends
-  #  
-  # end
+  def not_friends
+   errors.add(:receiver, 'already requested friendship') if receiver.friends.include?(sender)
+  end
 
 end

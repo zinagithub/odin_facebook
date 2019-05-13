@@ -20,17 +20,22 @@ class FriendRequestTest < ActiveSupport::TestCase
   test 'Invalid self friend request' do
 	refute @self_friend_request.valid?  
   end
-  # test 'Invalid friend request if friends' do
-    
-  # end  
 
-  # test 'Can accept requests' do
-	 #  @friend_request.accept
-	 #  assert_equal 1, @sender.friends.count
-  # end
+  test 'Invalid friend request if friends' do
+    @receiver.friends << @sender
+    refute @friend_request.valid?
+  end  
 
- #  test 'Invalid decline friend request' do
-	# 
- #  end
+  test 'Sender has friend after request accepted' do
+	  assert_difference '@sender.friends.count', +1 do
+      @friend_request.accept
+    end
+  end
+
+  test 'Receiver has friend after request accepted' do
+    assert_difference '@receiver.friends.count', +1 do
+      @friend_request.accept
+    end
+  end
 
 end
