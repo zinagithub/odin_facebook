@@ -18,7 +18,9 @@ class FriendRequestTest < ActiveSupport::TestCase
   test 'Invalid self friend request' do
 	refute @self_friend_request.valid?  
   end
-
+  test 'Invalid friend request if friends' do
+    
+  end  
  #  test 'Can accept requests' do
 	#   
  #  end

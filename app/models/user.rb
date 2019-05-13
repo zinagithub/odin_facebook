@@ -11,4 +11,8 @@ class User < ApplicationRecord
             class_name: "FriendRequest", dependent: :destroy
   has_many :friend_requests_received, foreign_key: :receiver_id,
 			class_name: "FriendRequest", dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :friendships, dependent: :destroy
+  has_many :friend, through: :friendships
+  
 end
