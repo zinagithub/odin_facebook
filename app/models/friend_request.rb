@@ -9,7 +9,6 @@ class FriendRequest < ApplicationRecord
 
   def accept
     sender.friends << receiver
-    receiver.friends << sender
     destroy
   end
 
