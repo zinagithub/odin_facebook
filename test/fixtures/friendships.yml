@@ -7,3 +7,7 @@ one:
 self_friendship:
   user: two
   friend: two
+two:
+  user: one
+  friend: three
+

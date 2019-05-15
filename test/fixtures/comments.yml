@@ -7,5 +7,5 @@ one:
 
 two:
   body: MyText
-  user: two
-  post: two
+  user: one
+  post: one

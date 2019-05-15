@@ -5,6 +5,16 @@ class UserTest < ActiveSupport::TestCase
   	@user = users(:one)
   end	
   
+  test 'user has many friends' do
+    assert 1 < @user.friends.count 
+  end
+
+  test 'user has many posts' do
+    assert 1 < @user.posts.count 
+  end 
+  test 'user has many comments' do
+    assert 1 < @user.comments.count 
+  end 
   test 'Valid user' do
 	assert @user.valid?  
   end

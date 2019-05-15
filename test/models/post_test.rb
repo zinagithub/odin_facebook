@@ -6,7 +6,9 @@ class PostTest < ActiveSupport::TestCase
     @user = users(:one)
     
   end	
-  
+  test 'post has many comments' do
+    assert 1 < @post.comments.count 
+  end
   test 'Valid post' do
 	assert @post.valid?  
   end

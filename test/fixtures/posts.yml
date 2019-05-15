@@ -4,6 +4,6 @@ one:
   body: MyText
   user: one
 
-# two:
-#   body: MyText
-#   user: two
+two:
+  body: MyText
+  user: one
