@@ -20,4 +20,24 @@ class UserTest < ActiveSupport::TestCase
   	refute @user.valid?
   	assert_not_nil @user.errors[:email], 'no validation error for name present'
   end
+
+  test 'Can create posts'  do
+   assert_difference '@user.posts.count', +1 do
+      @user.posts.create(body:'asdasdads')
+    end
+  end
+
+  test 'Post is destroyed when user is destroyed'  do
+    @user.destroy
+    assert_empty Post.where(user: @user)
+  end
+
+  test 'Can create comments'  do
+
+  end
+
+  test 'Comment is destroyed when user is destroyed'  do
+
+  end
+
 end

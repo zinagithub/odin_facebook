@@ -14,8 +14,18 @@ class PostTest < ActiveSupport::TestCase
 	refute @post.valid?  
   end
 
-  test 'Invalid user ' do
+  test 'Invalid without user' do
   	@post.user = nil
-	refute @post.valid?  
+	  refute @post.valid?  
   end
+
+  test 'Comments can be added to post' do
+
+  end
+
+  test 'Comments are destroyed when post is destroyed ' do
+     
+  end
+
+
 end
