@@ -33,11 +33,15 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'Can create comments'  do
-
+    assert_difference '@user.comments.count', +1 do
+      @user.comments.create(body:'asdasdads', post: posts(:one))
+    end
   end
 
   test 'Comment is destroyed when user is destroyed'  do
-
+    assert_difference 'Comment.count', -@user.comments.count do
+     @user.destroy
+    end
   end
 
 end
