@@ -19,9 +19,5 @@ class User < ApplicationRecord
 
   has_many :basic_friends, through: :friendships, source: :friend
   has_many :inverse_friends, through: :inverse_friendships, source: :user
-
-  def friends
-    basic_friends+inverse_friends
-  end
-
+  
 end

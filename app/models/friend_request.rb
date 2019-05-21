@@ -8,7 +8,7 @@ class FriendRequest < ApplicationRecord
   validate :not_friends
 
   def accept
-    sender.friends << receiver
+    sender.friendships.create(friend: receiver)
     destroy
   end
 
@@ -23,7 +23,9 @@ class FriendRequest < ApplicationRecord
   end
 
   def not_friends
-   errors.add(:receiver, 'already requested friendship') if receiver.friends.include?(sender)
+    if receiver.inverse_friends.include?(sender) || receiver.basic_friends.include?(sender)
+      errors.add(:receiver, 'already requested friendship') 
+    end
   end
 
 end

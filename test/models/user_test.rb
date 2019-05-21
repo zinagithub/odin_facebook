@@ -6,7 +6,7 @@ class UserTest < ActiveSupport::TestCase
   end	
   
   test 'user has many friends' do
-    assert 1 < @user.friends.count 
+    assert 1 < @user.basic_friends.count 
   end
 
   test 'user has many posts' do

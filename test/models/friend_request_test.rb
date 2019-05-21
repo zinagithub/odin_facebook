@@ -9,7 +9,7 @@ class FriendRequestTest < ActiveSupport::TestCase
   end	
   
   test 'Valid friend request' do
-	assert @friend_request.valid?  
+	 assert @friend_request.valid?  
   end
 
   test 'Invalid without sender' do
@@ -22,18 +22,18 @@ class FriendRequestTest < ActiveSupport::TestCase
   end
 
   test 'Invalid friend request if friends' do
-    @receiver.friends << @sender
+    @receiver.inverse_friends << @sender
     refute @friend_request.valid?
   end  
 
   test 'Sender has friend after request accepted' do
-	  assert_difference '@sender.friends.count', +1 do
+	  assert_difference '@sender.basic_friends.count', +1 do
       @friend_request.accept
     end
   end
 
   test 'Receiver has friend after request accepted' do
-    assert_difference '@receiver.friends.count', +1 do
+    assert_difference '@receiver.inverse_friends.count', +1 do
       @friend_request.accept
     end
   end
