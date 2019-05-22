@@ -19,10 +19,7 @@ class FriendRequest < ApplicationRecord
   end
 
   def not_pending
-     
-   if receiver.friend_requests_received.include?(sender) || sender.friend_request_receiver.include?(receiver)
-      errors.add(:receiver, 'already requested friendship')
-   end
+      errors.add(:receiver, 'already requested friendship') if sender.pending_friends.include?(receiver)
   end
 
   def not_friends

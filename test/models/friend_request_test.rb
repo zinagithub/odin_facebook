@@ -12,11 +12,6 @@ class FriendRequestTest < ActiveSupport::TestCase
 	 assert @friend_request.valid?  
   end
 
-  test 'Invalid without sender' do
-  	@friend_request.sender = nil
-  	refute @friend_request.valid?
-  end
-
   test 'Invalid self friend request' do
 	refute @self_friend_request.valid?  
   end
@@ -37,6 +32,10 @@ class FriendRequestTest < ActiveSupport::TestCase
       @friend_request.accept
     end
   end
-  test '' do
-  end  
+
+  test "can't send a friend request if it already exists" do
+    friend_request = FriendRequest.new(sender: @receiver, receiver: @sender)
+    refute friend_request.valid?
+  end
+
 end
