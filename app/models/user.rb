@@ -13,7 +13,6 @@ class User < ApplicationRecord
   has_many :friend_requests_received, foreign_key: :receiver_id,
 			class_name: "FriendRequest", dependent: :destroy
 
-  # has_many :inverse_pending_friends, through: :friend_requests_received, source: :sender
   has_many :pending_friends, through: :friend_requests_received, source: :sender
 
   has_many :comments, dependent: :destroy
@@ -24,8 +23,5 @@ class User < ApplicationRecord
 
   has_many :basic_friends, through: :friendships, source: :friend
   has_many :inverse_friends, through: :inverse_friendships, source: :user
-  
-  # def pending_friends
-  #   inverse_pending_friends + basic_pending_friends
-  # end
+
 end
