@@ -43,4 +43,8 @@ class FriendshipTest < ActiveSupport::TestCase
     end
   end
   
+
+  test 'not friend' do
+     assert !@friendship.include?(:three) 
+  end  
 end

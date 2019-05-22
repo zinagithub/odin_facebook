@@ -37,5 +37,6 @@ class FriendRequestTest < ActiveSupport::TestCase
       @friend_request.accept
     end
   end
-
+  test '' do
+  end  
 end

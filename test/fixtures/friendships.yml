@@ -11,3 +11,6 @@ two:
   user: one
   friend: three
 
+three:
+  user: three
+  friend: four
