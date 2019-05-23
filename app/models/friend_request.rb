@@ -8,7 +8,7 @@ class FriendRequest < ApplicationRecord
   validate :not_friends
 
   def accept
-    sender.friendships.create(friend: receiver)
+    sender.basic_friends << receiver
     destroy
   end
 
