@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
     let(:user) { create :user }
     let(:second) { create :user }
     let(:third) { create :user }
-    let(:post) { Post.create(body: "body", user: user) }
+    let(:post) { create :post }
 
     it 'should return true when user is valid' do
 	   expect(user.valid?).to be true
@@ -27,7 +27,7 @@ RSpec.describe User, type: :model do
     end
 
     it "should be able to create comments" do
-      expect{user.comments.create(body: "body", post: Post.create(body: "body", user: user))}.to change{user.comments.count}.from(0).to(1)
+      expect{user.comments.create(body: "body", post: post)}.to change{user.comments.count}.from(0).to(1)
     end
 
     it "can have many posts" do
