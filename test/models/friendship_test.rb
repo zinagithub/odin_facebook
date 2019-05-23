@@ -10,25 +10,25 @@ class FriendshipTest < ActiveSupport::TestCase
     @user = users(:three)
     @friend = users(:four)
   end	
-  test 'Valid friendship' do
-	  assert @friendship.valid?  
-  end
+  # test 'Valid friendship' do
+	 #  assert @friendship.valid?  
+  # end
 
-  test 'Invalid friendship' do
-  	refute @self_friendship.valid?
-  end
+  # test 'Invalid friendship' do
+  # 	refute @self_friendship.valid?
+  # end
 
-  test 'User has friend after friendship created' do
-    assert_difference '@user.basic_friends.count', +1 do
-      @user.friendships.create(friend: @friend)
-    end
-  end
+  # test 'User has friend after friendship created' do
+  #   assert_difference '@user.basic_friends.count', +1 do
+  #     @user.friendships.create(friend: @friend)
+  #   end
+  # end
 
-  test 'Friend has user as friend after friendship created' do
-    assert_difference '@friend.inverse_friends.count', +1 do
-      @user.friendships.create(friend: @friend)
-    end
-  end
+  # test 'Friend has user as friend after friendship created' do
+  #   assert_difference '@friend.inverse_friends.count', +1 do
+  #     @user.friendships.create(friend: @friend)
+  #   end
+  # end
 
   test 'User does not have friend after friendship destroyed' do
     assert_difference '@friendship.user.basic_friends.count', -1 do

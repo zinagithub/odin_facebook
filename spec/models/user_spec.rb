@@ -2,32 +2,27 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  describe 'default user details' do
+  describe 'default users' do
     let(:user) { create :user }
     let(:second) { create :user }
     let(:third) { create :user }
     let(:post) { Post.create(body: "body", user: user) }
 
-    it 'should initialize user with name and email' do
-      expect(user.name).to eq("Joe")
-      expect(user.email).to eq("user1@email.com")
-    end
-
     it 'should return true when user is valid' do
-	  expect(user.valid?).to be true
+	   expect(user.valid?).to be true
   	end
 
     it 'should return false when name is absent' do
-	 user.name = nil
-	 expect(user.valid?).to be false
-	end
+  	 user.name = nil
+  	 expect(user.valid?).to be false
+  	end
 
-	it 'should return false when email is absent' do
-	 user.email = nil
-	 expect(user.valid?).to be false
-	end
+  	it 'should return false when email is absent' do
+  	 user.email = nil
+  	 expect(user.valid?).to be false
+  	end
 
-	it "should be able to create posts" do
+  	it "should be able to create posts" do
       expect{user.posts.create(body: "body")}.to change{user.posts.count}.from(0).to(1)
     end
 
