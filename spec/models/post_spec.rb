@@ -4,21 +4,20 @@ RSpec.describe Post, type: :model do
 
   describe 'default post details' do
     let(:user) { create :user }
-    let(:second) { create :user }
-    let(:third) { create :user }
     let(:post) { create :post }
     let(:comment) { create :comment}
 
 
     it 'should increase a number of posts' do
-       Post.create(body: "Hello world!", user: user)	
-       expect(Post.all.count).to eq(1)
+       post_count = Post.all.count
+       Post.create(body: "Hello world!", user: user)
+       expect(Post.all.count).to eq(post_count+1)
     end
 
-    it 'should have many comments' do
+    it 'can have many comments' do
     	post.comments.create(body: "comment 1", user: user)
-        post.comments.create(body: "comment 2", user: user)
-        expect(post.comments.count).to eql(2)
+      post.comments.create(body: "comment 2", user: user)
+      expect(post.comments.count).to eql(2)
     end
 
     it 'should be valid' do
@@ -35,12 +34,11 @@ RSpec.describe Post, type: :model do
 	    expect(post.valid?).to be false  
     end
     
-    it 'should destroy all his Comments when it is destroyed ' do
+    it 'should destroy all its comments when post is destroyed ' do
     	post.comments.create(body: "comment 1", user: user)
       expect{post.destroy}.to change{post.comments.count}.from(1).to(0)   
     end
 
-    # testing posts_likes association
     it 'should have any or many likes' do
         post.likes.create(user: user)
         expect(post.likes.count).to be >= 0 
@@ -60,7 +58,7 @@ RSpec.describe Post, type: :model do
      	count1 = Like.all.count
      	count2 = post.likes.count
       expect{post.destroy}.to change{Like.all.count}.from(count1).to(count1 - count2)
-   
     end  
+
   end
 end
