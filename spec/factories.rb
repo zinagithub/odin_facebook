@@ -15,5 +15,20 @@ FactoryBot.define do
     user { create :user }
     post { create :post }
   end
+  
+  factory :comment do
+    body { "body" }
+    user { create :user}
+    post { create :post }
+  end
 
+  factory :friend_request do
+    sender { create :user }
+    receiver { create :user}
+  end
+
+  factory :friendship do
+    user { create :user }
+    friend { create :user}
+  end
 end
