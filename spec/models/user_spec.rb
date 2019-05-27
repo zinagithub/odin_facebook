@@ -3,49 +3,28 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
 
   describe 'default users' do
+    let(:valid_user) { build :user }
     let(:user) { create :user }
     let(:second) { create :user }
-    let(:third) { create :user }
     let(:post) { create :post }
 
-    it 'should return true when user is valid' do
-	   expect(user.valid?).to be true
-  	end
-
-    it 'should return false when name is absent' do
-  	 user.name = nil
-  	 expect(user.valid?).to be false
-  	end
-
-  	it 'should return false when email is absent' do
-  	 user.email = nil
-  	 expect(user.valid?).to be false
-  	end
-
-  	it "should be able to create posts" do
-      expect{user.posts.create(body: "body")}.to change{user.posts.count}.from(0).to(1)
+    context 'user with complete information' do
+      it 'is valid' do
+        valid_user.valid?
+        expect(valid_user).to be_valid
+      end
     end
+    
+    context 'user with missing information' do
+      it 'should return false when name is absent' do
+    	 valid_user.name = nil
+    	 expect(valid_user.valid?).to be false
+    	end
 
-    it "should be able to create comments" do
-      expect{user.comments.create(body: "body", post: post)}.to change{user.comments.count}.from(0).to(1)
-    end
-
-    it "can have many posts" do
-      user.posts.create(body: "body 1")
-      user.posts.create(body: "body 2")
-      expect(user.posts.count).to eql(2)
-    end
-
-    it "can have many comments" do
-      user.comments.create(body: "body 1", post: post)
-      user.comments.create(body: "body 2", post: post)
-      expect(user.comments.count).to eql(2)
-    end
-
-    it "can have many friendships" do
-      user.friendships.create(friend: second)
-      user.friendships.create(friend: third)
-      expect(user.friendships.count).to eql(2)
+    	it 'should return false when email is absent' do
+    	 valid_user.email = nil
+    	 expect(valid_user.valid?).to be false
+    	end
     end
 
     it "deletes posts when user is detroyed" do
@@ -64,5 +43,4 @@ RSpec.describe User, type: :model do
     end
 
   end
-
 end

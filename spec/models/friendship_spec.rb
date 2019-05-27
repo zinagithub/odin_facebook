@@ -4,24 +4,29 @@ RSpec.describe Friendship, type: :model do
 	describe 'default users' do
 		let(:user) { create :user }
    		let(:friend) { create :user }
-		let(:friendship) { Friendship.create(user: user, friend: friend) }
+		let(:friendship) { Friendship.new(user: user, friend: friend) }
 
+		context 'new friendship with complete information' do
+			it 'is valid' do
+			   expect(friendship.valid?).to be true
+		  	end
+		end
 
-		it 'should return true when friendship is valid' do
-		   expect(friendship.valid?).to be true
-	  	end
-
-	  	it 'should return false for invalid selffriendship' do
+	  	it 'should return false for invalid self-friendship' do
 	  	   friendship.friend = user
 		   expect(friendship.valid?).to be false
 	  	end
 
+	  	before(:each) do
+	  		friendship.save
+	  	end
+
 	  	it "should increase user's basic_friends by 1 when friendship is created" do
-	  		expect{user.friendships.create(friend: friend)}.to change{user.basic_friends.count}.from(0).to(1)
+	  		expect(user.basic_friends).to include(friend)
 	  	end
 
 	  	it "should increase friend's inverse_friends by 1 when friendship is created" do
-	  		expect{user.friendships.create(friend: friend)}.to change{friend.inverse_friends.count}.from(0).to(1)
+	  		expect(friend.inverse_friends).to include(user)
 	  	end
 
 	  	it "should decrease users's basic_friends by 1 when friendship is destroyed" do
