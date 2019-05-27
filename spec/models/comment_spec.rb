@@ -7,26 +7,29 @@ RSpec.describe Comment, type: :model do
     let(:second) { create :user }
     let(:third) { create :user }
     let(:post) { create :post }
+    let(:valid_comment) { build :comment}
     let(:comment) { create :comment}
 
+    context "Comment validations :" do
+      it 'should be valid at creation ' do
+        expect(valid_comment.valid?).to be true
+      end
 
-    it 'should be valid at creation ' do
-       expect(comment.valid?).to be true
-    end
+      it 'should be invalid without body' do
+        valid_comment.body = nil
+        expect(valid_comment.valid?).to be false  
+      end
 
-    it 'should be invalid without body' do
-     comment.body = nil
-     expect(comment.valid?).to be false  
-    end
+      it 'should be invalid without user' do
+        valid_comment.user = nil
+        expect(valid_comment.valid?).to be false  
+      end
 
-    it 'should be invalid without user' do
-     comment.user = nil
-     expect(comment.valid?).to be false  
-    end
-
-    it 'should be invalid without post' do
-      comment.post = nil
-      expect(comment.valid?).to be false
-    end
+      it 'should be invalid without post' do
+        valid_comment.post = nil
+        expect(valid_comment.valid?).to be false
+      end
+    end  
+    
   end
 end
