@@ -37,6 +37,11 @@ RSpec.describe Friendship, type: :model do
 	  		it "should decrease friend's inverse_friends by 1 when friendship is destroyed" do
 	  			expect{friendship.destroy}.to change{friendship.friend.inverse_friends.count}.from(1).to(0)
 	  		end
+
+	  		it "can't create same friendship" do
+	  			Friendship.new(user: friend, friend: user)
+	  			expect(friendship.valid?).to be false
+	  		end
 	  	end	
 	  	
 	end

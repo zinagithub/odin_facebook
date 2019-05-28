@@ -2,6 +2,7 @@ class Friendship < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: "User"
   validate :not_self
+  validate :not_friends
 
   private
 
@@ -10,8 +11,8 @@ class Friendship < ApplicationRecord
   end
 
     def not_friends
-	    if receiver.inverse_friends.include?(sender) || receiver.basic_friends.include?(sender)
-	      errors.add(:receiver, 'already friends') 
+	    if user.inverse_friends.include?(friend) || user.basic_friends.include?(friend)
+	      errors.add(:user, 'already friends') 
 	    end
   	end
 
