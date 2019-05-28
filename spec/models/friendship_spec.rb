@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Friendship, type: :model do
 	describe 'default users' do
-		let(:user) { create :user }
-   		let(:friend) { create :user }
-		let(:friendship) { Friendship.new(user: user, friend: friend) }
+		let(:friendship) { build :friendship }
+		let(:user) { friendship.user }
+   		let(:friend) { friendship.friend }
 
 		context 'Friendship validations :' do
 			it 'should validate valid relationship' do
@@ -16,9 +16,6 @@ RSpec.describe Friendship, type: :model do
 	  		end
 		end
 
-	  	
-
-	  	
 	  	context 'friendship associations' do
 	  		before(:each) do
 		  		friendship.save
