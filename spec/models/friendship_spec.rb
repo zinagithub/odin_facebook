@@ -18,10 +18,11 @@ RSpec.describe Friendship, type: :model do
 
 	  	
 
-	  	before(:each) do
-	  		friendship.save
-	  	end
+	  	
 	  	context 'friendship associations' do
+	  		before(:each) do
+		  		friendship.save
+		  	end
 	  		it "should increase user's basic_friends by 1 when friendship is created" do
 	  			expect(user.basic_friends).to include(friend)
 	  		end
