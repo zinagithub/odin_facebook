@@ -1,16 +1,22 @@
 class PostsController < ApplicationController
 	
-	 before_action :authenticate_user!
-     before_action :set_post, only: [:show, :edit, :update, :destroy]
-  def new
-  	@post = Post.all
-  end	
+	before_action :authenticate_user!
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+
   def show
     @comments = @post.comments
   end
 
+  def index
+    @post = Post.all
+  end
+
+  def new
+    @post = Post.new
+  end 
+
   def create
-    @post = current_user.posts.new(post_params)
+    @post = current_user.posts.build(post_params)
     if @post.save
       redirect_to root_path
     else
@@ -32,6 +38,7 @@ class PostsController < ApplicationController
   end
 
   private
+  
   def set_post
     @post = Post.find(params[:id])
   end
