@@ -18,13 +18,18 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to root_path
+      redirect_to posts_path, notice: 'Post was successfully created.'
     else
-      redirect_to root_path, notice: @post.errors.full_messages.first
+      render :new
     end
   end
 
   def edit
+    if @post.update(edit_params)
+      redirect_to @post, notice: 'Post was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   def update
@@ -38,7 +43,7 @@ class PostsController < ApplicationController
   end
 
   private
-  
+
   def set_post
     @post = Post.find(params[:id])
   end
