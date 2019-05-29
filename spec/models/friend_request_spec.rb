@@ -11,7 +11,7 @@ RSpec.describe FriendRequest, type: :model do
 
     context "FriendRequest validations :" do
       it 'should be valid friend request' do
-        expect(valid_friend_request.valid?).to be true  
+        expect(valid_friend_request).to be_valid 
       end 
 
       it 'should be invalid when self friend request' do

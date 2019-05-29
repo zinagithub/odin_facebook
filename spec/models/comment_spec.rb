@@ -12,7 +12,7 @@ RSpec.describe Comment, type: :model do
 
     context "Comment validations :" do
       it 'should be valid at creation ' do
-        expect(valid_comment.valid?).to be true
+        expect(valid_comment).to be_valid
       end
 
       it 'should be invalid without body' do

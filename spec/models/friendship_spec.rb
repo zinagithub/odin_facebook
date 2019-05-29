@@ -8,7 +8,7 @@ RSpec.describe Friendship, type: :model do
 
 		context 'Friendship validations :' do
 			it 'should validate valid relationship' do
-			   expect(friendship.valid?).to be true
+			   expect(friendship).to be_valid
 		  	end
 		  	it 'should return false for invalid self-friendship' do
 	  	   	   friendship.friend = user
