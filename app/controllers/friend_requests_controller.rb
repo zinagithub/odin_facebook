@@ -2,11 +2,11 @@ class FriendRequestsController < ApplicationController
 	before_action :set_friend_request, only: [:destroy, :accept]
 
   def index
-    @pending_friends = current_user.pending_friends
+    @friend_requests = current_user.friend_requests_received
   end
 
   def create
-    @friend_request = current_user.friend_requests_sent.build(receiver: receiver)
+    @friend_request = current_user.friend_requests_sent.build(receiver_id: params[:receiver_id])
     if @friend_request.save
       respond_to do |format|
           format.html { redirect_back(fallback_location: root_path, notice: 'Friend request sent.') }
@@ -20,9 +20,8 @@ class FriendRequestsController < ApplicationController
   def destroy
     @friend_request.destroy
     respond_to do |format|
-        format.html { redirect_to friend_requests_path }
-        format.js
-      end
+      format.html { redirect_to friend_requests_path }
+      format.js
     end
   end
 
@@ -30,10 +29,8 @@ class FriendRequestsController < ApplicationController
     @sender = @friend_request.sender
     @receiver = @friend_request.receiver
     @sender.basic_friends << @receiver
-    respond_to do |format|
-        format.html { redirect_to friend_requests_path }
-        format.js
-    end
+    @friend_request.destroy
+    redirect_to friend_requests_path
   end
 
   private

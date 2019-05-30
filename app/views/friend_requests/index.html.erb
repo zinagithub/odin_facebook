@@ -1,6 +1,7 @@
-<h1>Index</h1>
+<h1>Pending friends</h1>
 <ul>
-<% @received_requests.each do |f_req| %>
-	<li><%= f_req.name %></li>
+<% @friend_requests.each do |friend_request| %>
+	<li><%= friend_request.receiver.name %></li>
+	<%= link_to 'accept', accept_path(id: friend_request.id) %> 
 <% end %>
 </ul>

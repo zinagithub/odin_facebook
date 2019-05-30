@@ -1,2 +1,13 @@
 <%= @user.name %>
 <%= link_to 'Friends', user_friends_path %>
+
+<div id="friend_request_form<%= @user.id %>">
+	<% if @user.pending_friends.include?(current_user) || current_user.pending_friends.include?(@user) || current_user.friends.include?(@user) %>
+		<p>Friend request sent or already friends</p>
+	<% else %>
+		<%= form_for(current_user.friend_requests_sent.build, remote: true) do |f| %>
+		  <div><%= hidden_field_tag :receiver_id, @user.id %></div>
+		  <%= f.submit "Send friend request"%>
+		<% end %>	
+	<% end %>
+</div>

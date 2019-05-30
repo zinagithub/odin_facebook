@@ -11,8 +11,8 @@ class UsersController < ApplicationController
 	end
 
 	def friends
-		@friends = @user.basic_friends + @user.inverse_friends
-	end
+		@friends = @user.friends
+	end 
 
 	private 
 

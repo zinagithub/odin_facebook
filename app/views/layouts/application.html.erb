@@ -11,6 +11,8 @@
 
   <body>
       <%= link_to 'logout', destroy_user_session_path, method: :delete if current_user %>
+      <%= link_to 'my page', current_user if current_user %>
+      <%= link_to 'pending friends', friend_requests_path if current_user %>
     <%= yield %>
   </body>
 </html>
