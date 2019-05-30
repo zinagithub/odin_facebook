@@ -1,40 +1,39 @@
 class FriendRequestsController < ApplicationController
-	before_action :set_friend_request, only: %i[update destroy]
- 
-  def new
-  	@friend_request = FriendRequest.new
-  end 
+	before_action :set_friend_request, only: [:destroy]
+
   def index
-    @received_requests = current_user.pending_friends
+    @pending_friends = current_user.pending_friends
   end
 
   def create
-    
-  end
-
-  def update
-    
+    @friend_request = current_user.friend_requests_sent.build(receiver: receiver)
+    if @friend_request.save
+      respond_to do |format|
+          format.html { redirect_back(fallback_location: root_path, notice: 'Friend request sent.') }
+          format.js
+        end
+    else
+      flash[:error] = 'Friend request could not be sent'
+    end
   end
 
   def destroy
-    authorize @friend_request, :destroy?
     @friend_request.destroy
     respond_to do |format|
-      format.html do
-        redirect_back fallback_location: root_path,
-                      success: 'Friend request successfuly destroyed'
+        format.html { redirect_to friend_requests_path }
+        format.js
       end
-      format.js
     end
   end
 
   private
 
   def friend_request_params
-    params.require(:friend_request).permit(:receiver_id, :status)
+    params.require(:friend_request).permit(:receiver_id)
   end
 
   def set_friend_request
     @friend_request = FriendRequest.find(params[:id])
   end
+
 end
