@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'user/:id/friends', to: 'users#friends', as: 'user_friends'
   resources :users
   resources :posts
-  resources :friend_requests, only: %i[index new create  destroy]
+  resources :friend_requests, only: [:index, :create, :destroy]
+  get 'friend_requests/:id/accept', to: 'friend_requests#accept', as: 'accept'
   root to: 'users#index'
 end

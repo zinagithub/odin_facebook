@@ -1,5 +1,5 @@
 class FriendRequestsController < ApplicationController
-	before_action :set_friend_request, only: [:destroy]
+	before_action :set_friend_request, only: [:destroy, :accept]
 
   def index
     @pending_friends = current_user.pending_friends
@@ -23,6 +23,16 @@ class FriendRequestsController < ApplicationController
         format.html { redirect_to friend_requests_path }
         format.js
       end
+    end
+  end
+
+  def accept
+    @sender = @friend_request.sender
+    @receiver = @friend_request.receiver
+    @sender.basic_friends << @receiver
+    respond_to do |format|
+        format.html { redirect_to friend_requests_path }
+        format.js
     end
   end
 
