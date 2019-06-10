@@ -18,15 +18,15 @@ RSpec.describe Friendship, type: :model do
 	  	end
 
 	  	before(:each) do
-	  		friendship.save
+	  		friendship.save!
 	  	end
 
 	  	it "should increase user's basic_friends by 1 when friendship is created" do
-	  		expect(user.basic_friends).to include(friend)
+	  		expect(user.friends).to include(friend)
 	  	end
 
 	  	it "should increase friend's inverse_friends by 1 when friendship is created" do
-	  		expect(friend.inverse_friends).to include(user)
+	  		expect(friend.friends).to include(user)
 	  	end
 
 	  	it "should decrease users's basic_friends by 1 when friendship is destroyed" do
