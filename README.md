@@ -1,6 +1,6 @@
 # README
 # Building Facebook Project :
- In this project we have to build an application whose fonctionnalities are similar to that of Facebook
+ In this project we have to build an application whose fonctionnalities are similar to that of Facebook.
 
  **Prerequisites:**
  * Ruby
