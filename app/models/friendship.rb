@@ -15,11 +15,6 @@ class Friendship < ApplicationRecord
   def not_friends
     errors.add(:friend, "already in friendlist") if user.friends.include?(friend)
   end 
-  #zina
-  def prevent_duplicate_record
-    return true if user.friends.include?(friend) || friend.friends.include?(user)
-    false
-  end  
 
   def delete_request_associated
        # logic that finds the request associated 
