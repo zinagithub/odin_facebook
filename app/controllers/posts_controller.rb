@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-	
+  
   before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
@@ -25,16 +25,21 @@ class PostsController < ApplicationController
   end
 
   def edit
+    #if @post.update(edit_params)
+    #  redirect_to @post, notice: 'Post was successfully updated.'
+    #else
+    #  render :edit
+    #end
+  end
+
+  def update
+    #@post.update(post_params)
+    #redirect_to @post
     if @post.update(edit_params)
       redirect_to @post, notice: 'Post was successfully updated.'
     else
       render :edit
     end
-  end
-
-  def update
-    @post.update(post_params)
-    redirect_to @post
   end
 
   def destroy
@@ -51,6 +56,6 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:body)
   end
- 	
+  
 end
 

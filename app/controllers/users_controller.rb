@@ -7,12 +7,17 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@posts = @user.posts
+  		@posts = @user.posts
+  		@friends = @user.friends
 	end
 
-	def friends
-		@friends = @user.friends
-	end 
+	#def show
+	#	@posts = @user.posts
+	#end
+
+	#def friends
+	#	@friends = @user.basic_friends + @user.inverse_friends
+	#end
 
 	private 
 
