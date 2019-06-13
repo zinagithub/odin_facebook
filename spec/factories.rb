@@ -26,11 +26,6 @@ FactoryBot.define do
     sender { create :user }
     receiver { create :user}
   end
-  # factory :friendship do
-   # user { create :user }
-   # friend { create :user}
-  #end
-
 
   factory :friendship do
     user

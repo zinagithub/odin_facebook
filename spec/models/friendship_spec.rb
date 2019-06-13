@@ -4,7 +4,7 @@ RSpec.describe Friendship, type: :model do
 	describe 'default users' do
 		let(:user) { create :user }
    		let(:friend) { create :user }
-		let(:friendship) { Friendship.new(user: user, friend: friend) }
+		let(:friendship) { build(:friendship, user_id: user.id, friend_id: friend.id) }
 
 		context 'new friendship with complete information' do
 			it 'is valid' do
