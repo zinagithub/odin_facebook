@@ -25,14 +25,6 @@ class FriendRequestsController < ApplicationController
     end
   end
 
-  def accept
-    @sender = @friend_request.sender
-    @receiver = @friend_request.receiver
-    @sender.basic_friends << @receiver
-    @friend_request.destroy
-    redirect_to friend_requests_path
-  end
-
   private
 
   def friend_request_params

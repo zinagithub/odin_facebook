@@ -1,8 +1,6 @@
 class FriendRequest < ApplicationRecord
   belongs_to :sender, class_name: 'User'
   belongs_to :receiver, class_name: 'User'
- 
-  # validate :not_friends
   validate :not_pending
   validate :not_self
   validate :not_friends
