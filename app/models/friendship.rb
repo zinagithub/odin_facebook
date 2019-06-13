@@ -16,7 +16,8 @@ class Friendship < ApplicationRecord
   end 
 
   def delete_request_associated
-    FriendRequest.where("sender_id = ? AND receiver_id = ?", friend.id, user.id).take.destroy
+    request = FriendRequest.where("sender_id = ? AND receiver_id = ?", friend.id, user.id).take
+    request.destroy if request
   end
 
 end
