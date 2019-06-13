@@ -2,10 +2,10 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.build(comment_params)
-    if !@comment.save
-      flash[:error] = "Comment was not created"
+    if @comment.save
+      flash[:notice] = "Comment was successfully created."
   	else
-  	  flash[:notice] = "Comment was successfully created."
+  	  flash[:error] = "Comment was not created"
     end
     redirect_back(fallback_location: root_path)
   end
