@@ -1,8 +1,12 @@
 class FriendshipsController < ApplicationController
 	
 	def index
-		@user = User.find(params[:id]) || current_user
-		@user.friends
+		if params[:id]
+			@user = User.find(params[:id])
+		else
+			@user = current_user
+		end
+		@friends = @user.friends
 	end 
 
 	def create
