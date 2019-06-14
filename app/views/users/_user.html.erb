@@ -1,9 +1,12 @@
 <% unless current_user == user %>
 	<div class="row text-center my-2">
 		<div class="col-md-6">
-				<div class="my-2">
-					<%= link_to user.name, user %>
-				</div>
+			<div>
+				<%= gravatar_for user, size: 40 %>
+			</div>
+			<div class="my-2">
+				<%= link_to user.name, user %>
+			</div>
 		</div>
 		<div class="col-md-6 mt-3">
 			<%= render 'shared/request_form', user: user %>
