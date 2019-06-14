@@ -5,11 +5,6 @@ class FriendRequest < ApplicationRecord
   validate :not_self
   validate :not_friends
 
-  def accept
-    sender.basic_friends << receiver
-    destroy
-  end
-
   private
 
   def not_self
