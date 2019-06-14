@@ -6,10 +6,15 @@ RSpec.describe Friendship, type: :model do
    		let(:friend) { create :user }
 		let(:friendship) { build(:friendship, user_id: user.id, friend_id: friend.id) }
 
-		context 'new friendship with complete information' do
-			it 'is valid' do
-			   expect(friendship.valid?).to be true
+
+		context 'Friendship validations :' do
+			it 'should validate valid relationship' do
+			   expect(friendship).to be_valid
 		  	end
+		  	it 'should return false for invalid self-friendship' do
+	  	   	   friendship.friend = user
+		   	   expect(friendship.valid?).to be false
+	  		end
 		end
 
 	  	it 'should return false for invalid self-friendship' do
