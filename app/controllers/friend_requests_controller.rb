@@ -6,6 +6,7 @@ class FriendRequestsController < ApplicationController
   end
 
   def create
+    @user = User.find(params[:receiver_id])
     @friend_request = current_user.friend_requests_sent.build(receiver_id: params[:receiver_id])
     if @friend_request.save
       respond_to do |format|
@@ -18,6 +19,7 @@ class FriendRequestsController < ApplicationController
   end
 
   def destroy
+    @user = @friend_request.receiver
     @friend_request.destroy
     respond_to do |format|
       format.html { redirect_to friend_requests_path }

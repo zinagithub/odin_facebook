@@ -15,6 +15,8 @@ class User < ApplicationRecord
 
   has_many :pending_friends, through: :friend_requests_received, source: :sender
 
+  has_many :friends_requested, through: :friend_requests_sent, source: :receiver
+
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 

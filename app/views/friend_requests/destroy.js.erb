@@ -1,0 +1,1 @@
+$("#request_form<%= @user.id %>").html("<%= escape_javascript(render('users/send_request', user: @user)) %>");
