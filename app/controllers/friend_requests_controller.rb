@@ -1,5 +1,5 @@
 class FriendRequestsController < ApplicationController
-	before_action :set_friend_request, only: [:destroy, :accept]
+	before_action :set_friend_request, only: [:destroy]
 
   def index
     @friend_requests = current_user.friend_requests_received
