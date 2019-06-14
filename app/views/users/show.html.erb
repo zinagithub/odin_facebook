@@ -1,13 +1,41 @@
-<%= @user.name %>
-<%= link_to 'Friends', user_friends_path %>
-
-<div id="friend_request_form<%= @user.id %>">
-	<% if @user.pending_friends.include?(current_user) || current_user.pending_friends.include?(@user) || current_user.friends.include?(@user) %>
-		<p>Friend request sent or already friends</p>
-	<% else %>
-		<%= form_for(current_user.friend_requests_sent.build, remote: true) do |f| %>
-		  <div><%= hidden_field_tag :receiver_id, @user.id %></div>
-		  <%= f.submit "Send friend request"%>
-		<% end %>	
-	<% end %>
+<div class="row">
+	<div class="col-md-3">
+		<%= gravatar_for @user %>
+	</div>
+	<div class="col-md-9 text-center mt-5">
+		<h1 class=""><%= @user.name %></h1>
+	</div>
+</div>
+<div class="row mt-5">
+	<div class="col-md-3">
+		<div class="row">
+			<% unless @user == current_user %>
+				<%= render "shared/request_form", user: @user %>
+			<% end %>
+		</div>
+		<h3>Friends</h3>
+		<div class="row py-3 border mr-4">
+			<% @friends.each do |friend| %>
+			<div class="p-2 text-center">
+				<%= link_to gravatar_for(friend, size: 40), friend, class: "p-2" %><br>
+				<p><%= friend.name.split(' ')[0] %></p>
+			</div>
+				
+			<% end %>
+		</div>
+	</div>
+	<div class="col-md-9">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</div>
 </div>

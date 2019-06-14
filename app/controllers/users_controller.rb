@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
 	def show
   		@posts = @user.posts
-  		@friends = @user.friends
+  		@friends = @user.friends[0..5]
 	end
 
 	private 
