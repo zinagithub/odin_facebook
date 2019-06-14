@@ -1,6 +1,6 @@
 <div id="request_form<%= user.id %>">
 	<% if current_user.friends.include?(user) %>
-		<%= render 'friendship_form', user: user %>
+		<%= render 'cancle_friendship', user: user %>
 	<% elsif current_user.friends_requested.include?(user) %>
 		<%= render 'cancle_request', user: user %>
 	<% else %>
