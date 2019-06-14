@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :users
   resources :posts
   resources :friend_requests, only: [:index, :create, :destroy]
-  get 'friend_requests/accept', to: 'friend_requests#accept', as: 'accept'
+  resources :friendships, only: [:index, :create, :destroy]
   root to: 'users#index'
 end

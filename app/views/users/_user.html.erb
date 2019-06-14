@@ -1,11 +1,13 @@
-<div class="row text-center my-2">
-	<div class="col-md-6">
-			<div class="my-2">
-				<%= link_to user.name, user %>
-			</div>
+<% unless current_user == user %>
+	<div class="row text-center my-2">
+		<div class="col-md-6">
+				<div class="my-2">
+					<%= link_to user.name, user %>
+				</div>
+		</div>
+		<div class="col-md-6 mt-3">
+			<%= render 'request_form', user: user %>
+		</div>
 	</div>
-	<div class="col-md-6 mt-3">
-		<%= render 'request_form', user: user unless current_user.friends.include?(user) %>
-	</div>
-</div>
-<hr>
+	<hr>
+<% end %>

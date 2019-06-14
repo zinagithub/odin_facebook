@@ -2,6 +2,6 @@
 <ul>
 <% @friend_requests.each do |friend_request| %>
 	<li><%= friend_request.receiver.name %></li>
-	<%= link_to 'accept', accept_path(id: friend_request.id) %> 
+	<%= link_to "Accept", friendships_path(friend_id: friend_request.sender.id), method: :post %>
 <% end %>
 </ul>

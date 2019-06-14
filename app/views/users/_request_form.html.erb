@@ -1,9 +1,9 @@
-<% unless current_user == user %>
-  <div id="request_form<%= user.id %>">
-  <% if current_user.friends_requested.include?(user) %>
-    <%= render 'cancle_request', user: user %>
-  <% elsif current_user.pending_friends %>
-    <%= render 'send_request', user: user %>
-  <% end %>
-  </div>
-<% end %>
+<div id="request_form<%= user.id %>">
+	<% if current_user.friends.include?(user) %>
+		<%= render 'friendship_form', user: user %>
+	<% elsif current_user.friends_requested.include?(user) %>
+		<%= render 'cancle_request', user: user %>
+	<% else %>
+		<%= render 'send_request', user: user %>
+	<% end %>
+</div>
