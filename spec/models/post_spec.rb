@@ -6,9 +6,8 @@ RSpec.describe Post, type: :model do
     let(:user) { create :user }
     let(:post) { create :post }
     let(:valid_post) { build :post }
-    let(:comment) { create :comment}
+    let(:comment) { create :comment }
 
-<<<<<<< HEAD
     describe "Post Agregations" do 
       context "when creating new post" do 
         it 'should increase a number of posts' do
@@ -17,6 +16,7 @@ RSpec.describe Post, type: :model do
           expect(Post.all.count).to eq(post_count+1)
         end
       end 
+
       context "when creating new comment" do 
         it 'can have many comments' do
           post.comments.create(body: "comment 1", user: user)
@@ -32,16 +32,12 @@ RSpec.describe Post, type: :model do
         it 'should increase likes by one when it is liked by user' do
           expect{post.likes.create(user: user)}.to change{post.likes.count}.from(0).to(1)
         end 
-
         it 'should decrease likes by one when post is unliked by user' do 
           post.likes.create(user: user)
           expect{post.likes.last.destroy}.to change{post.likes.count}.from(1).to(0)
         end
       end 
     end  
-    
-
-    
 
     describe "Post validations" do
       context "with complete details" do
@@ -50,15 +46,15 @@ RSpec.describe Post, type: :model do
         end
       end 
       context "with incomplete details"  do
-          it 'should be invalid without body' do
-            post.body = nil
-            expect(post.valid?).to be false  
-          end
+        it 'should be invalid without body' do
+          post.body = nil
+          expect(post.valid?).to be false  
+        end
 
-          it 'should be invalid without user' do
-            post.user = nil
-            expect(post.valid?).to be false  
-          end
+        it 'should be invalid without user' do
+          post.user = nil
+          expect(post.valid?).to be false  
+        end
       end  
     end  
     
@@ -77,38 +73,7 @@ RSpec.describe Post, type: :model do
           expect{post.destroy}.to change{Like.all.count}.from(count1).to(count1 - count2)
         end
       end 
-    end   
-   
-=======
-    context "Post validation" do
-      it 'should be valid' do
-        expect(valid_post).to be_valid
-      end
-
-      it 'should be invalid without body' do
-        valid_post.body = nil
-        expect(valid_post.valid?).to be false  
-      end
-
-      it 'should be invalid without user' do
-        valid_post.user = nil
-        expect(valid_post.valid?).to be false  
-      end
     end 
 
-    context "Post associations" do
-      it 'should destroy all its comments when it is destroyed ' do
-        post.comments.create(body: "comment 1", user: user)
-        expect{post.destroy}.to change{post.comments.count}.from(1).to(0)   
-      end
-      it 'should destroy all likes when it is destroyed' do
-        post.likes.create(user: user)
-        count1 = Like.all.count
-        count2 = post.likes.count
-        expect{post.destroy}.to change{Like.all.count}.from(count1).to(count1 - count2)
-      end
-    end 
-    
->>>>>>> 34aba6da94ed061a921719c3d5f8c624763784ef
   end
 end
