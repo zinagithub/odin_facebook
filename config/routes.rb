@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
   get 'user/:id/friends', to: 'users#friends', as: 'user_friends'
   resources :users
-  resources :posts
+  resources :posts do
+  	resources :comments
+  end
   resources :friend_requests, only: [:index, :create, :destroy]
   resources :friendships, only: [:index, :create, :destroy]
   root to: 'users#index'

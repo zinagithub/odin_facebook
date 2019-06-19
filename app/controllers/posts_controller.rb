@@ -7,7 +7,9 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    #@posts = Post.all
+    #zina
+    @posts = current_user.feed.paginate(page: params[:posts_page], per_page: 10)
   end
 
   def new

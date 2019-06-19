@@ -1,1 +1,52 @@
-<%= @comment.name %>
+<!--%= @comment.name %-->
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @post.body %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @post.user.email %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= @post.user.name %>
+</p>
+
+<h1>View Comments</h1>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>comments</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @post.comments.each do |comment| %>
+      <tr>
+       
+        <td><%= comment.body %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<h1>Add Comments</h1>
+<%= form_for([@post,@post.comments.build]) do |f| %>
+	<div class = "field">
+		<%= f.label :body %>
+		<%= f.text_area :body %>
+	</div>
+	<div class = "actions" >
+		<%= f.submit %>
+	</div>
+<% end %>
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
