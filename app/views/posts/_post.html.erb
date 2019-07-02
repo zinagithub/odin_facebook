@@ -1,0 +1,9 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= post.user.name %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= time_ago_in_words(post.created_at) %> ago</h6>
+    <p class="card-text"><%= post.body %></p>
+    <p class="card-link"><%= link_to 'Edit', edit_post_path(post) %></p>
+    <p class="card-link"><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </div>
+</div>

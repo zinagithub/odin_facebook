@@ -5,3 +5,4 @@
 	<%= link_to "Accept", friendships_path(friend_id: friend_request.sender.id), method: :post %>
 <% end %>
 </ul>
+<%= will_paginate @friend_requests %>

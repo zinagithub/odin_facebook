@@ -1,12 +1,12 @@
 class FriendshipsController < ApplicationController
-	
+	require 'will_paginate/array'
 	def index
 		if params[:id]
 			@user = User.find(params[:id])
 		else
 			@user = current_user
 		end
-		@friends = @user.friends
+		@friends = @user.friends.paginate(page: params[:page], per_page: 5)
 	end 
 
 	def create
