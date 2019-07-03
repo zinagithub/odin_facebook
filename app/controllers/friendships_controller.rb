@@ -6,7 +6,7 @@ class FriendshipsController < ApplicationController
 		else
 			@user = current_user
 		end
-		@friends = @user.friends.paginate(page: params[:page], per_page: 5)
+		@friends = @user.friends.paginate(page: params[:page], per_page: 10)
 	end 
 
 	def create

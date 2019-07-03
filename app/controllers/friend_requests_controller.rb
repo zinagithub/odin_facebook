@@ -2,7 +2,7 @@ class FriendRequestsController < ApplicationController
 	before_action :set_friend_request, only: [:destroy]
 
   def index
-    @friend_requests = current_user.friend_requests_received.paginate(page: params[:page], per_page: 5)
+    @friend_requests = current_user.friend_requests_received.paginate(page: params[:page], per_page: 10)
   end
 
   def create
