@@ -1,8 +1,9 @@
 class CommentsController < ApplicationController
-  before_action :find_post
+  before_action :find_post, only: [:create]
+  # before_action :find_comment, only: [:destroy]
 
   def create
-    p comment_params
+    
     @comment = current_user.comments.build(comment_params)
     if @comment.save!
       respond_to do |format|

@@ -18,12 +18,12 @@
     Liked by <strong id="likes<%= post.id %>">
       <%= pluralize(post.likes.count, 'user') %>
     </strong>
-    <%= link_to 'Comment', post, class: 'float-right text-muted' %>
+    <p class='float-right text-muted', id="<%="commentsBtn#{post.id}"%>">Comments</p> <!-- show/hide comments -->
   </div>
   <div>
     <%= render "comments/comment_form", post: post %>
   </div>
   <div id=<%="comments#{post.id}"%>>
-    <%= render post.comments %>
+    <%= render post.comments.last(3) %> <!-- implement load more -->
   </div>
 </div>
