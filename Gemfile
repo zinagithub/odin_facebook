@@ -72,6 +72,8 @@ gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
 gem 'pundit', '~> 1.1'
 gem 'gritter', '~> 1.2'
 
+gem 'omniauth-facebook', '~> 4.0'
+
 gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
 gem 'carrierwave', '~> 0.11.2'
 gem 'mini_magick', '~> 4.5', '>= 4.5.1'
