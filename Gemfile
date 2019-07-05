@@ -70,6 +70,7 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'will_paginate', '~> 3.1.0'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
 gem 'pundit', '~> 1.1'
+gem 'gritter', '~> 1.2'
 
 gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
 gem 'carrierwave', '~> 0.11.2'

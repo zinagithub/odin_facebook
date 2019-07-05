@@ -1,4 +1,9 @@
 <%= form_with(model: @post, local: true) do |form| %>
+  <% if @post.errors.any? %>
+      <% @post.errors.full_messages.each do |message| %>
+        <%= alert_generator message %>
+      <% end %>
+  <% end %>
   <div class="row my-4">
     <div class="col-md-6">
       <div class="form-group text-center ">
