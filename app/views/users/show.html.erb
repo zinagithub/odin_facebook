@@ -9,22 +9,30 @@
 <hr>
 <div class="row mt-5">
 	<div class="col-md-3">
-		<div class="row">
+		<div class="row mb-4">
 			<% unless @user == current_user %>
 				<%= render "shared/request_form", user: @user %>
 			<% end %>
 		</div>
-		<h3>Friends</h3>
-		<div class="my-grid border pt-2">
-			<% @friends.each do |friend| %>
-			<div class="p-2 text-center">
-				<%= link_to gravatar_for(friend, size: 40), friend, class: "p-2" %><br>
-				<p><%= friend.name.split(' ')[0] %></p>
+		<% if @friends.count > 0 %>
+			<h3 class="text-center">Friends</h3>
+			<div class="my-grid border pt-2">
+				<% @friends.each do |friend| %>
+				<div class="p-2 text-center">
+					<%= link_to gravatar_for(friend, size: 40), friend, class: "p-2" %><br>
+					<p><%= friend.name.split(' ')[0] %></p>
+				</div>
+				<% end %>
 			</div>
-			<% end %>
-		</div>
+		<% else %>
+			<h3 class="text-muted text-center">No friends yet</h3>
+		<% end %>
 	</div>
 	<div class="col-md-9">
-		<%= render @posts %>
+		<% if @posts.count > 0 %>
+			<%= render @posts %>
+		<% else %>
+			<h3 class="text-muted text-center">No posts yet</h3>
+		<% end %>
 	</div>
 </div>
