@@ -20,4 +20,10 @@
     </strong>
     <%= link_to 'Comment', post, class: 'float-right text-muted' %>
   </div>
+  <div>
+    <%= render "comments/comment_form", post: post %>
+  </div>
+  <div id=<%="comments#{post.id}"%>>
+    <%= render post.comments %>
+  </div>
 </div>
