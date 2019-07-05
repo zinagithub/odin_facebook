@@ -26,17 +26,19 @@ class PostsController < ApplicationController
   end
 
   def edit
+    authorize @post
   end
 
   def update
-    if @post.update(edit_params)
-      redirect_to @post, notice: 'Post was successfully updated.'
+    if @post.update(post_params)
+      redirect_to posts_path, notice: 'Post was successfully updated.'
     else
       render :edit
     end
   end
 
   def destroy
+    authorize @post
     @post.destroy
     redirect_to posts_path
   end
