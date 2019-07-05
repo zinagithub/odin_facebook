@@ -1,4 +1,7 @@
 <div class="card mx-auto my-5" style="width: 30rem;">
+  <% unless post.image.length == 0 %>
+    <%= image_tag post.image.to_s, class: "card-img-top", height:'300px' %>
+  <% end %>
   <div class="card-body">
     <h5 class="card-title"><%= link_to post.user.name, post.user unless @user%></h5>
     <h6 class="card-subtitle mb-2 text-muted"><%= time_ago_in_words(post.created_at) %> ago</h6>
