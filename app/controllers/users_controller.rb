@@ -3,7 +3,11 @@ class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :friends]
 
 	def index
-		@users = User.all.paginate(page: params[:page], per_page: 10)
+		if params[:search]
+			@users = User.where('name LIKE ?', "%#{params[:search]}%").paginate(page: params[:page], per_page: 10)
+		else 
+			@users = User.all.paginate(page: params[:page], per_page: 10)
+		end
 	end
 
 	def show

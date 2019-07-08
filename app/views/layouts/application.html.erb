@@ -39,10 +39,10 @@
           </li>
           <% end %>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <%= form_tag users_path, class: 'form-inline my-2 my-lg-0 row mr-1' , :method => 'get' do %>
+            <%= text_field_tag :search, params[:search], class: "form-control mr-sm-2", placeholder: "Search" %>
+            <%= submit_tag "Search", :name => nil, class: "btn btn-secondary my-2 my-sm-0" %>
+        <% end %>
       </div>
     </nav>
     <main role="main" class="container">
