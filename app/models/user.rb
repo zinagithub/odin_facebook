@@ -45,4 +45,14 @@ class User < ApplicationRecord
     end
   end
 
+  # def feed 
+  #   friends1_ids = "SELECT user_id FROM friendships
+  #                    WHERE  friend_id = :user_id"
+  #   friends2_ids = "SELECT friend_id FROM friendships
+  #                    WHERE  friend_iduser_id = :user_id"
+  #   friends_ids = friends1_ids + friends2_ids
+  #   Post.where("user_id IN (#{friends_ids})
+  #                    OR user_id = :user_id", user_id: id)
+  # end
+
 end
