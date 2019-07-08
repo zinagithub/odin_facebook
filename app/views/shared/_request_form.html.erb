@@ -1,11 +1,3 @@
 <div id="request_form<%= user.id %>">
-	<% if current_user.friends.include?(user) %>
-		<%= render 'shared/cancle_friendship', user: user %>
-	<% elsif current_user.pending_friends.include?(user) %>
-		<%= link_to 'Pending friend', friend_requests_path, class: "btn btn-outline-primary pending-friend" %>
-	<% elsif current_user.friends_requested.include?(user) %>
-		<%= render 'shared/cancle_request', user: user %>
-	<% else %>
-		<%= render 'shared/send_request', user: user %>
-	<% end %>
+	<%= friendship_button_for user %>
 </div>
