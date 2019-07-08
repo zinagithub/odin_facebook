@@ -8,8 +8,8 @@
     <p class="card-text"><%= post.body %></p>
     <div class="row">
       <div class="col-md-6 mt-2">
-        <span class="card-link"><%= link_to fa_icon("edit"), edit_post_path(post), class: "text-dark align-middle my-btn" %></span>
-        <span class="card-link"><%= link_to fa_icon("trash"), post, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-dark align-middle my-btn" %></span>
+        <span class="card-link"><%= delete_post post %></span>
+        <span class="card-link"><%= edit_post post %></span>
       </div>
       <div class="col-md-6">
         <span class="card-link float-right"><%= render 'likes/like_form', post: post %></span>

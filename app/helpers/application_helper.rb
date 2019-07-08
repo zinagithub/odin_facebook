@@ -10,4 +10,5 @@ module ApplicationHelper
 		js extend_gritter position: :bottom_right
 		js add_gritter(alert, title: "Notification", time: 4000)
 	end
+	
 end
