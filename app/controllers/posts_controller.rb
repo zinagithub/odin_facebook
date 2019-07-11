@@ -2,9 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.all.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
-    #zina
-    # @posts = current_user.feed.paginate(page: params[:posts_page], per_page: 10)
+    @posts = Post.all.paginate(page: params[:page], per_page: 10)
   end
 
   def new
