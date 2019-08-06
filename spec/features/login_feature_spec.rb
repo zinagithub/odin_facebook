@@ -19,11 +19,4 @@ RSpec.feature "Login management", :type => :feature do
     expect(page).to have_text("Logout")
   end
 
-  # scenario "User clicks on 'Send friend request' on user show page" do
-  # 	login_as(user, :scope => :user)
-  #   visit user_path(user2)
-  #   click_button "Send friend request"
-  #   expect(page).to have_button('Cancle friend request')
-  # end
-
 end
