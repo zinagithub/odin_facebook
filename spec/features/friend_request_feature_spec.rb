@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Post management", :type => :feature do
+RSpec.feature "Friend request management", :type => :feature do
   let(:user) { create :user }
   let(:user2) { create :user }
   
