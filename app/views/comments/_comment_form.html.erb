@@ -1,0 +1,5 @@
+<%= form_for(Comment.new, remote: true) do |f| %>
+  <%= f.text_area :body, class: "form-control" %>
+  <%= f.hidden_field :post_id, value: post.id %>
+  <%= f.submit 'Post Comment', class: "text-muted float-right", id: "commentBtn" %>
+<% end %>

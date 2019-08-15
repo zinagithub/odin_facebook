@@ -12,4 +12,31 @@
  *
  *= require_tree .
  *= require_self
+ *= require gritter
  */
+@import "bootstrap";
+@import "font-awesome";
+body {
+  padding-top: 5rem;
+  display: block;
+}
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.my-btn {
+  font-size: 1.5rem;
+}
+
+.my-btn-like {
+  color: #969696;
+}
+
+.my-btn-unlike {
+  color: red;
+  &:hover {
+        color: #d20101;
+    }
+}
+

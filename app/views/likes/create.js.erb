@@ -1,0 +1,2 @@
+$("#like_form<%= @post.id %>").html("<%= escape_javascript(render('unlike', post: @post)) %>");
+$("#likes<%= @post.id %>").html('<%= pluralize(@post.likes.count, 'user') %>')

@@ -1,0 +1,29 @@
+<div class="card mx-auto my-5" style="width: 30rem;">
+  <%= image post %>
+  <div class="card-body">
+    <h5 class="card-title"><%= link_to post.user.name, post.user unless @user%></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= time_ago_in_words(post.created_at) %> ago</h6>
+    <p class="card-text"><%= post.body %></p>
+    <div class="row">
+      <div class="col-md-6 mt-2">
+        <span class="card-link"><%= delete_post post %></span>
+        <span class="card-link"><%= edit_post post %></span>
+      </div>
+      <div class="col-md-6">
+        <span class="card-link float-right"><%= render 'likes/like_form', post: post %></span>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+    Liked by <strong id="likes<%= post.id %>">
+      <%= pluralize(post.likes.count, 'user') %>
+    </strong>
+    <p class='float-right text-muted', id="<%="commentsBtn#{post.id}"%>">Comments</p> <!-- show/hide comments -->
+  </div>
+  <div>
+    <%= render "comments/comment_form", post: post %>
+  </div>
+  <div id=<%="comments#{post.id}"%>>
+    <%= render post.comments.last(3) %> <!-- implement load more -->
+  </div>
+</div>

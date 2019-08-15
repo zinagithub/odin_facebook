@@ -1,8 +1,12 @@
 class FriendshipsController < ApplicationController
-	
+	require 'will_paginate/array'
 	def index
-		@user = User.find(params[:id]) || current_user
-		@user.friends
+		if params[:id]
+			@user = User.find(params[:id])
+		else
+			@user = current_user
+		end
+		@friends = @user.friends.paginate(page: params[:page], per_page: 10)
 	end 
 
 	def create
@@ -17,7 +21,16 @@ class FriendshipsController < ApplicationController
 
 	def destroy
 		@friendship = Friendship.find(params[:id])
+		if @friendship.friend == current_user
+			@user = @friendship.user
+		else
+			@user = @friendship.friend
+		end
 		@friendship.destroy
+		respond_to do |format|
+	      format.html { redirect_to friend_requests_path }
+	      format.js
+	    end
 	end
 
 end

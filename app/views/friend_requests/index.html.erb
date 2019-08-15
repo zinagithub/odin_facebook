@@ -1,7 +1,17 @@
-<h1>Pending friends</h1>
-<ul>
+<h1>Friend requests</h1>
 <% @friend_requests.each do |friend_request| %>
-	<li><%= friend_request.receiver.name %></li>
-	<%= link_to 'accept', accept_path(id: friend_request.id) %> 
+	<div class="row text-center my-2">
+		<div class="col-md-6">
+			<div>
+				<%= gravatar_for friend_request.sender, size: 40 %>
+			</div>
+			<div class="my-2">
+				<%= link_to friend_request.sender.name, friend_request.sender %>
+			</div>
+		</div>
+		<div class="col-md-6 mt-3">
+			<%= link_to "Accept", friendships_path(friend_id: friend_request.sender.id), method: :post, class: "btn btn-primary" %>
+		</div>
+	</div>
 <% end %>
-</ul>
+<%= will_paginate @friend_requests %>

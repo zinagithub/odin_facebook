@@ -1,13 +1,38 @@
-<%= @user.name %>
-<%= link_to 'Friends', user_friends_path %>
-
-<div id="friend_request_form<%= @user.id %>">
-	<% if @user.pending_friends.include?(current_user) || current_user.pending_friends.include?(@user) || current_user.friends.include?(@user) %>
-		<p>Friend request sent or already friends</p>
-	<% else %>
-		<%= form_for(current_user.friend_requests_sent.build, remote: true) do |f| %>
-		  <div><%= hidden_field_tag :receiver_id, @user.id %></div>
-		  <%= f.submit "Send friend request"%>
-		<% end %>	
-	<% end %>
+<div class="row pb-5 mt-3">
+	<div class="col-md-4 mt-3">
+		<%= gravatar_for @user, size: "200" %>
+	</div>
+	<div class="col-md-8 text-center mt-5">
+		<h1 class="mt-4"><%= @user.name %></h1>
+	</div>
+</div>
+<hr>
+<div class="row mt-5">
+	<div class="col-md-3">
+		<div class="row mb-4">
+			<% unless @user == current_user %>
+				<%= render "shared/request_form", user: @user %>
+			<% end %>
+		</div>
+		<% if @friends.count > 0 %>
+			<h3 class="text-center">Friends</h3>
+			<div class="my-grid border pt-2">
+				<% @friends.each do |friend| %>
+				<div class="p-2 text-center">
+					<%= link_to gravatar_for(friend, size: 40), friend, class: "p-2" %><br>
+					<p><%= friend.name.split(' ')[0] %></p>
+				</div>
+				<% end %>
+			</div>
+		<% else %>
+			<h3 class="text-muted text-center">No friends yet</h3>
+		<% end %>
+	</div>
+	<div class="col-md-9">
+		<% if @posts.count > 0 %>
+			<%= render @posts %>
+		<% else %>
+			<h3 class="text-muted text-center">No posts yet</h3>
+		<% end %>
+	</div>
 </div>

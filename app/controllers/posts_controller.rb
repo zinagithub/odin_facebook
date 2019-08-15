@@ -1,13 +1,8 @@
 class PostsController < ApplicationController
-
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
-  def show
-    @comments = @post.comments
-  end
-
   def index
-    @posts = Post.all
+    @posts = Post.all.paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -24,19 +19,21 @@ class PostsController < ApplicationController
   end
 
   def edit
+    authorize @post
   end
 
   def update
-    if @post.update(edit_params)
-      redirect_to @post, notice: 'Post was successfully updated.'
+    if @post.update(post_params)
+      redirect_to posts_path, notice: 'Post was successfully updated.'
     else
       render :edit
     end
   end
 
   def destroy
+    authorize @post
     @post.destroy
-    redirect_to root_path
+    redirect_to posts_path
   end
 
   private
@@ -46,7 +43,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:body)
+    params.require(:post).permit(:body, :image)
   end
   
 end

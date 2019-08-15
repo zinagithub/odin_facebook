@@ -1,0 +1,4 @@
+<%= form_for(current_user.friend_requests_sent.find_by(receiver_id: user.id),html: { method: :delete }, remote: true) do |f| %>
+	<div><%= hidden_field_tag :user_id, user.id %></div>
+  <%= f.submit "Cancle friend request", class: "btn btn-outline-secondary px-5" %>
+<% end %>

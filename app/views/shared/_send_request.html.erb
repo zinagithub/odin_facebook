@@ -1,0 +1,4 @@
+<%= form_for(current_user.friend_requests_sent.build, remote: true) do |f| %>
+  <div><%= hidden_field_tag :receiver_id, user.id %></div>
+  <%= f.submit "Send friend request", class: "btn btn-primary px-5" %>
+<% end %>
