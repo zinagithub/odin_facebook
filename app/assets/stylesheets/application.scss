@@ -16,6 +16,8 @@
  */
 @import "bootstrap";
 @import "font-awesome";
+@import url('https://fonts.googleapis.com/css?family=Lexend+Mega&display=swap');
+
 body {
   padding-top: 5rem;
   display: block;
@@ -38,5 +40,10 @@ body {
   &:hover {
         color: #d20101;
     }
+}
+
+.railsbook {
+  font-family: 'Lexend Mega', sans-serif;
+  font-size: 30px;
 }
 
