@@ -2,6 +2,8 @@
 # Building Facebook Project :
  In this project we have to build an application whose fonctionnalities are similar to that of Facebook.
 
+ Built via pair programming by [me](https://github.com/zinagithub) and [Filipp Dmytriyenko](https://github.com/YellowPipe)
+ 
  **Prerequisites:**
  * Ruby
  * Ruby on Rails
