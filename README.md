@@ -10,7 +10,15 @@
  * SQL
  * Heroku
  * Git
+ 
+ 
+ **To run the app**
 
+ 1. Clone this repo
+ 2. Run `bundle install`
+ 3. Run `rails s`
+ 4. Open `localhost:3000` in your browser
+ 
  **How we will create our social networking site?**
  We need to create three systems:
  * a system for managing users
